@@ -112,58 +112,8 @@ class _AdminUserDetailState extends State<AdminUserDetailPage> {
                                 value: value.selectedAnggota.email),
                             SizedBox(height: 15),
                             VerticalTitleValue(
-                                title: 'Jenis Identitas',
-                                value: value.selectedAnggota.jenisIdentitas),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Nomor Identitas',
-                                value: value.selectedAnggota.nomorIdentitas),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Agama',
-                                value: value.selectedAnggota.agama),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
                                 title: 'Tempat Lahir',
                                 value: value.selectedAnggota.tempatLahir),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Tanggal Lahir',
-                                value: parseDate(value
-                                    .selectedAnggota.tanggalLahir
-                                    .toString())),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Status Perkawinan',
-                                value: value.selectedAnggota.statusPerkawinan),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Alamat',
-                                value: value.selectedAnggota.alamat),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Provinsi',
-                                value: value.selectedAnggota.provinsi),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Kabupaten/Kota',
-                                value: value.selectedAnggota.kota),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Kecamatan',
-                                value: value.selectedAnggota.kecamatan ?? "-"),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'Kelurahan',
-                                value: value.selectedAnggota.kelurahan ?? "-"),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'RT',
-                                value: value.selectedAnggota.rt ?? "-"),
-                            SizedBox(height: 15),
-                            VerticalTitleValue(
-                                title: 'RW',
-                                value: value.selectedAnggota.rw ?? "-"),
                             SizedBox(height: 100),
                           ],
                         ),

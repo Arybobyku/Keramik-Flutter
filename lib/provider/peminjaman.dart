@@ -86,12 +86,7 @@ class PeminjamanProvider extends ChangeNotifier{
   }
 
   Future showNotification(String message)async{
-    await NotificationService.flutterLocalNotificationsPlugin.show(
-        12345,
-        "Pengembalian Buku",
-        message,
-        platformChannelSpecifics,
-        payload: 'data');
+
   }
 
 }

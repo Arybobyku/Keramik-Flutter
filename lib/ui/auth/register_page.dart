@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:country_state_city_picker/country_state_city_picker.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
@@ -30,24 +30,11 @@ class _RegisterPageState extends State<RegisterPage> {
   File? photoProfile = null;
   File? filePicker = null;
   bool secureText = true;
-  String? jenisIdentitas = "KTP";
-  String? nomorIdentitas = null;
   String? email = null;
   String? password = null;
-  DateTime? tanggalLahir = null;
+  String? tanggalLahir = null;
   String? namaLengkap = null;
   String? tempatLahir = null;
-  String? alamat = null;
-  String? provinsi = null;
-  String? kota = null;
-  String? kecamatan = null;
-  String? kelurahan = null;
-  String? rt = null;
-  String? rw = null;
-
-  String? agama = null;
-  String? statusPerkawinan = "Belum Kawin";
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -93,36 +80,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                   secureText: false,
                 ),
-                SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () {
-                    DatePicker.showDatePicker(
-                      context,
-                      onChanged: (val) {},
-                      onConfirm: (val) {
-                        setState(() {
-                          tanggalLahir = val;
-                        });
-                      },
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15))
-                    ),
-                    child: Text(
-                        tanggalLahir != null
-                            ? "${tanggalLahir?.day}/${tanggalLahir?.month}/${tanggalLahir?.year}"
-                            : "Tanggal Lahir",
-                        style: TextStyle(
-                            color: ColorPalette.generalPrimaryColor,
-                            fontSize: 16)),
-                  ),
-                ),
-                SizedBox(height: 10,),
                 InputFieldRounded(
                   label: "Password",
                   hint: "Password",
@@ -165,22 +122,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   onPressed: () {
                     doRegister(
                       context: context,
-                      jenisIdentitas: jenisIdentitas,
-                      kota: kota,
                       namaLengkap: namaLengkap,
-                      nomorIdentitas: nomorIdentitas,
-                      provinsi: provinsi,
-                      tanggalLahir: tanggalLahir,
                       tempatLahir: tempatLahir,
-                      alamat: alamat,
                       email: email,
                       password: password,
-                      kecamatan: kecamatan,
-                      kelurahan: kelurahan,
-                      rt: rt,
-                      rw: rw,
-                      statusPerkawinan: statusPerkawinan,
-                      agama: agama,
                       photoProfile: photoProfile
                     );
                   },
@@ -228,35 +173,15 @@ class _RegisterPageState extends State<RegisterPage> {
   doRegister({
     required BuildContext context,
     File? photoProfile,
-    String? jenisIdentitas,
-    String? nomorIdentitas,
-    DateTime? tanggalLahir,
     String? namaLengkap,
     String? tempatLahir,
-    String? alamat,
-    String? provinsi,
-    String? kota,
     String? email,
     String? password,
-    String? kecamatan,
-    String? kelurahan,
-    String? rt,
-    String? rw,
-    String? statusPerkawinan,
-    String? agama,
   }) async {
-    if (jenisIdentitas != null &&
-        nomorIdentitas != null &&
-        photoProfile != null &&
-        tanggalLahir != null &&
+    if (photoProfile != null &&
         namaLengkap != null &&
         tempatLahir != null &&
-        alamat != null &&
-        provinsi != null &&
-        kota != null &&
         email != null &&
-        statusPerkawinan != null &&
-        agama != null &&
         password != null) {
       EasyLoading.show(status: "Loading...");
       UserModel user = UserModel(
@@ -264,20 +189,7 @@ class _RegisterPageState extends State<RegisterPage> {
         tempatLahir: tempatLahir,
         email: email,
         password: password,
-        jenisIdentitas: jenisIdentitas,
-        nomorIdentitas: nomorIdentitas,
-        tanggalLahir: tanggalLahir,
         namaLengkap: namaLengkap,
-        alamat: alamat,
-        provinsi: provinsi,
-        kota: kota,
-        isOrder: false,
-        kecamatan: kecamatan??"-",
-        kelurahan: kelurahan??"-",
-        rt: rt??"-",
-        rw: rw??"-",
-        statusPerkawinan: statusPerkawinan,
-        agama: agama,
         isValid: false,
       );
       var result = await Provider.of<AuthProvider>(context, listen: false)

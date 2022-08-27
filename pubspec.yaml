@@ -21,27 +21,28 @@ dependencies:
   flutter_easyloading:
   rflutter_alert:
   flutter_svg:
-  cloud_firestore: 3.1.14
+  cloud_firestore:
   file_picker: ^4.6.1
-  firebase_storage: ^10.2.15
-  firebase_auth: 3.3.15
-  firebase_core: 1.17.1
+  firebase_storage:
+  firebase_auth:
+  firebase_core:
   google_fonts:
   get:
   intl:
   flutter_local_notifications:
   lottie:
-  pull_to_refresh: ^2.0.0
+#  pull_to_refresh: ^2.0.0
   get_it:
   fpdart:
   injectable:
-  flutter_datetime_picker: ^1.5.1
+  date_time_picker: ^2.1.0
 #  workmanager:
   country_state_city_picker: ^1.2.8
   cron: ^0.5.0
   modal_bottom_sheet:
   download_assets: ^3.0.0
   webview_flutter:
+  firebase_auth_platform_interface: 6.1.10
 
 dev_dependencies:
   flutter_test:

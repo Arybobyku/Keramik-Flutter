@@ -75,16 +75,6 @@ class _AdminDetailPageState extends State<AdminDetailPage> {
                             value: valueAdmin.detailPeminjaman.userModel.email),
                         SizedBox(height: 15),
                         VerticalTitleValue(
-                            title: 'Jenis Identitas Peminjaman',
-                            value: valueAdmin
-                                .detailPeminjaman.userModel.jenisIdentitas),
-                        SizedBox(height: 15),
-                        VerticalTitleValue(
-                            title: 'Identitas Peminjaman',
-                            value: valueAdmin
-                                .detailPeminjaman.userModel.nomorIdentitas),
-                        SizedBox(height: 15),
-                        VerticalTitleValue(
                             title: 'Tanggal Peminjaman',
                             value: parseDate(valueAdmin
                                 .detailPeminjaman.tanggalPeminjaman

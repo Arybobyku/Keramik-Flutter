@@ -48,7 +48,6 @@ class AuthProvider extends ChangeNotifier{
   }
 
   userIsOrderBook(){
-    this.user.isOrder = true;
     notifyListeners();
   }
 

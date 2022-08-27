@@ -5,7 +5,7 @@ import 'package:keramik/ui/widget/input_field_rounded.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar(
-      {Key? key, this.onTapSearch, this.enable = true, this.onChanged,this.onEditingCompleted,this.title = "Cari Buku",this.onSubmit})
+      {Key? key, this.onTapSearch, this.enable = true, this.onChanged,this.onEditingCompleted,this.title = "Cari Keramik",this.onSubmit})
       : super(key: key);
   final Function()? onTapSearch;
   final Function()? onEditingCompleted;

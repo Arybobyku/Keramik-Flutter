@@ -135,27 +135,7 @@ class UserDetailBukuPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                  if (valuAuth.user.isValid)
-                    if (!valuePeminjaman.riwayatSaya
-                            .any((element) => element.status < 3) ||
-                        valuePeminjaman.riwayatSaya.isEmpty)
-                      if (valueBuku.bukuDetail!.stok > 0)
-                        if (valuePeminjaman.keranjang.length < 3)
-                          if (!valuePeminjaman.keranjang.any((element) =>
-                              element.id == valueBuku.bukuDetail!.id))
-                            if (valuAuth.user.pinalty != null &&
-                                getDurationDifferenceInt(DateTime.now(),
-                                        valuAuth.user.pinalty!) <
-                                    0)
-                              ButtonRounded(
-                                text: "Tambah Buku",
-                                onPressed: () {
-                                  Provider.of<PeminjamanProvider>(context,
-                                          listen: false)
-                                      .tambahKeKeranjang(valueBuku.bukuDetail!);
-                                  Get.back();
-                                },
-                              )
+
               ],
             ),
           );

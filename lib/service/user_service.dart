@@ -36,7 +36,6 @@ class UserService {
 
     String path = await simpanGambar(photoProfile);
     Random random = new Random();
-    DateTime pinalty = DateTime(2000);
     int randomNumber = random.nextInt(100);
     String code = "${randomNumber}${DateTime.now().millisecond}${DateTime.now().second}${DateTime.now().minute}${DateTime.now().month}${DateTime.now().year}";
     user.photoProfile = path;
@@ -46,23 +45,10 @@ class UserService {
         'email': user.email,
         'uuid': code,
         'namaLengkap': user.namaLengkap,
-        'alamat': user.alamat,
-        'jenisIdentitas': user.jenisIdentitas,
-        'provinsi': user.provinsi,
         'role': 0,
-        'pinalty':pinalty,
         'photoProfile': path,
-        'kota': user.kota,
         'tempatLahir': user.tempatLahir,
-        'tanggalLahir': user.tanggalLahir,
-        'nomorIdentitas': user.nomorIdentitas,
         'isOrder': false,
-        'kecamatan': user.kecamatan,
-        'kelurahan': user.kelurahan,
-        'rt': user.rt,
-        'rw': user.rw,
-        'statusPerkawinan': user.statusPerkawinan,
-        'agama': user.agama,
         'isValid': false,
       });
       return user;
@@ -77,15 +63,6 @@ class UserService {
       var userById = await _userReference.doc(user.id);
       await userById.update({
         'namaLengkap': user.namaLengkap,
-        'alamat': user.alamat,
-        'provinsi': user.provinsi,
-        'kota': user.kota,
-        'kecamatan': user.kecamatan,
-        'kelurahan': user.kelurahan,
-        'rt': user.rt,
-        'rw': user.rw,
-        'statusPerkawinan': user.statusPerkawinan,
-        'agama': user.agama,
       });
 
     }catch(e){
@@ -96,33 +73,15 @@ class UserService {
   Future<UserModel> getUserById(String id) async {
     try {
       DocumentSnapshot snapshot = await _userReference.doc(id).get();
-      var tanggalLahir = snapshot['tanggalLahir'];
-      DateTime date = tanggalLahir.toDate();
-      var tanggalPinalty = snapshot['pinalty']??null;
-      DateTime? tglPinaltyToDateTime = tanggalPinalty!=null? tanggalPinalty.toDate():null;
       return UserModel(
         id: id,
         uuid: snapshot['uuid'],
         email: snapshot['email'],
         namaLengkap: snapshot['namaLengkap'],
         password: '',
-        pinalty: tglPinaltyToDateTime,
-        jenisIdentitas: snapshot['jenisIdentitas'],
-        provinsi: snapshot['provinsi'],
-        kota: snapshot['kota'],
         role: snapshot['role'],
         photoProfile: snapshot['photoProfile'],
-        alamat: snapshot['alamat'],
-        nomorIdentitas: snapshot['nomorIdentitas'],
-        tanggalLahir: date,
         tempatLahir: snapshot['tempatLahir'],
-        isOrder: snapshot['isOrder'],
-        kecamatan: snapshot['kecamatan'],
-        kelurahan: snapshot['kelurahan'],
-        rt: snapshot['rt'],
-        rw: snapshot['rw'],
-        statusPerkawinan: snapshot['statusPerkawinan'],
-        agama: snapshot['agama'],
         isValid: snapshot['isValid'],
       );
     } catch (e) {

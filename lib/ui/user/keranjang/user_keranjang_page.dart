@@ -1,5 +1,5 @@
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
@@ -75,35 +75,7 @@ class _UserKeranjangPageState extends State<UserKeranjangPage> {
                   },
                 ),
               ),
-        if (valuePeminjaman.keranjang.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-                child: GestureDetector(
-                  onTap: () {
-                    DatePicker.showDatePicker(
-                      context,
-                      onChanged: (val) {},
-                      onConfirm: (val) {
-                        setState(() {
-                          tanggalPeminjaman = val;
-                        });
-                      },
-                    );
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                    decoration: kRoundedContainer,
-                    child: Text(
-                        tanggalPeminjaman != null
-                            ? "${tanggalPeminjaman?.day}/${tanggalPeminjaman?.month}/${tanggalPeminjaman?.year}"
-                            : "Tanggal Peminjaman",
-                        style: TextStyle(
-                            color: ColorPalette.generalPrimaryColor,
-                            fontSize: 16)),
-                  ),
-                ),
-              ),
+
               if (valuePeminjaman.keranjang.isNotEmpty && tanggalPeminjaman!=null)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),

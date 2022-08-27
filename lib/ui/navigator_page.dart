@@ -10,6 +10,7 @@ import 'package:keramik/model/user_model.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/setup_locator.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class NavigatorPage extends StatefulWidget {
@@ -26,12 +27,14 @@ class _NavigatorPageState extends State<NavigatorPage> {
     return Scaffold(
       backgroundColor: ColorPalette.generalBackgroundColor,
       body: Center(
-        child: Text(
-          "MyPerpus",
-          style: TextStyle(
-            color: ColorPalette.generalPrimaryColor,
-            fontSize: 25,
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              'images/loading.json',
+            ),
+          ],
         ),
       ),
     );
@@ -51,10 +54,6 @@ class _NavigatorPageState extends State<NavigatorPage> {
         UserModel userModel = UserModel.fromjson(jsonDecode(userJson!), user.uid);
         Provider.of<AuthProvider>(context,listen: false).setUserModelFromPref(userModel);
         Get.offAllNamed(Routes.adminInfo);
-      }else if(role==2){
-        UserModel userModel = UserModel.fromjson(jsonDecode(userJson!), user.uid);
-        Provider.of<AuthProvider>(context,listen: false).setUserModelFromPref(userModel);
-        Get.offAllNamed(Routes.pustawakan);
       }else{
         UserModel? userModel = UserModel.fromjson(jsonDecode(userJson!), user.uid);
         Provider.of<AuthProvider>(context,listen: false).setUserModelFromPref(userModel);

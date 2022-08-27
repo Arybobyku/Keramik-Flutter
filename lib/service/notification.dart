@@ -52,15 +52,3 @@ class NotificationService {
       String? payload,
       DateTimeComponents? matchDateTimeComponents}) async {}
 }
-
-const AndroidNotificationDetails androidPlatformChannelSpecifics =
-    AndroidNotificationDetails(
-  'peminjaman',
-  'peminjaman',
-  importance: Importance.max,
-  priority: Priority.max,
-  ongoing: true,
-);
-
-const NotificationDetails platformChannelSpecifics =
-    NotificationDetails(android: androidPlatformChannelSpecifics);

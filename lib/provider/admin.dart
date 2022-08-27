@@ -118,7 +118,6 @@ class AdminProvider extends ChangeNotifier {
   Future<Either<String,bool>> konfirmasiAnggota(UserModel userModel)async{
     try{
       await _adminService.konfirmasiAnggota(userModel);
-      userModel.isValid = true;
       listAnggota[listAnggota.indexWhere(
               (element) => element.id == userModel.id)] = userModel;
       notifyListeners();
@@ -133,7 +132,6 @@ class AdminProvider extends ChangeNotifier {
   Future<Either<String,bool>> batalkanKonfirmasiAnggota(UserModel userModel)async{
     try{
       await _adminService.batalkanKonfirmasiAnggota(userModel);
-      userModel.isValid = false;
       listAnggota[listAnggota.indexWhere(
               (element) => element.id == userModel.id)] = userModel;
       notifyListeners();

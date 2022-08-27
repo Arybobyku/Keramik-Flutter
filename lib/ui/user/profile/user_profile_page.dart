@@ -74,21 +74,6 @@ class UserProfilePage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 8),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: valueAuth.user.isValid
-                                      ? ColorPalette.generalSoftGreen
-                                      : ColorPalette.generalSoftRed),
-                              child: Text(
-                                valueAuth.user.isValid
-                                    ? "Tervalidasi"
-                                    : "Belum Tervalidasi",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            )
                           ],
                         ),
                         SizedBox(height: 10),
@@ -108,13 +93,6 @@ class UserProfilePage extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Icon(Icons.house),
-                            SizedBox(width: 10),
-                            Text(valueAuth.user.alamat)
-                          ],
-                        ),
                         SizedBox(height: 10),
                         SizedBox(
                           width: 100,
@@ -186,72 +164,6 @@ class UserProfilePage extends StatelessWidget {
                   initialValue: user.tempatLahir,
                   onChange: (val) {
                     user.tempatLahir = val;
-                  },
-                  secureText: false,
-                ),
-                InputFieldRounded(
-                  label: "Alamat",
-                  hint: '',
-                  initialValue: user.alamat,
-                  onChange: (val) {
-                    user.alamat = val;
-                  },
-                  secureText: false,
-                ),
-                InputFieldRounded(
-                  label: "Agama",
-                  hint: '',
-                  initialValue: user.agama,
-                  onChange: (val) {
-                    user.agama = val;
-                  },
-                  secureText: false,
-                ),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: kRoundedContainer,
-                  child: SelectState(
-                      onCountryChanged: (val) {},
-                      onStateChanged: (val) {
-                        user.provinsi = val;
-                      },
-                      onCityChanged: (val) {
-                        user.kota = val;
-                      }),
-                ),
-                InputFieldRounded(
-                  label: "Kecamatan",
-                  hint: '',
-                  initialValue: user.kecamatan,
-                  onChange: (val) {
-                    user.kecamatan = val;
-                  },
-                  secureText: false,
-                ),
-                InputFieldRounded(
-                  label: "Kelurahan",
-                  hint: '',
-                  initialValue: user.kelurahan,
-                  onChange: (val) {
-                    user.kelurahan = val;
-                  },
-                  secureText: false,
-                ),
-                InputFieldRounded(
-                  label: "RT",
-                  hint: '',
-                  initialValue: user.rt,
-                  onChange: (val) {
-                    user.kelurahan = val;
-                  },
-                  secureText: false,
-                ),
-                InputFieldRounded(
-                  label: "RW",
-                  hint: '',
-                  initialValue: user.rw,
-                  onChange: (val) {
-                    user.kelurahan = val;
                   },
                   secureText: false,
                 ),

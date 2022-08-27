@@ -10,7 +10,6 @@ import 'package:keramik/ui/admin/userDetail/admin_user_detial.dart';
 import 'package:keramik/ui/auth/login_page.dart';
 import 'package:keramik/ui/auth/register_page.dart';
 import 'package:keramik/ui/navigator_page.dart';
-import 'package:keramik/ui/pustakawan/pustakawan_page.dart';
 import 'package:keramik/ui/user/detailRiwayat/user_detail_riwayat.dart';
 import 'package:keramik/ui/user/detailbuku/user_detail_buku.dart';
 import 'package:keramik/ui/user/keranjang/user_keranjang_page.dart';
@@ -60,7 +59,6 @@ class Routes {
     GetPage(name: adminCheckUser, page:()=>AdminCheckUserPage()),
     GetPage(name: adminDetailAnggota, page:()=>AdminUserDetailPage()),
     GetPage(name: userKeranjang, page:()=>UserKeranjangPage()),
-    GetPage(name: pustawakan, page:()=>PustakawanPage()),
     GetPage(name: detailBukuGeneral, page:()=>BukuDetailPage()),
     GetPage(name: webView, page:()=>WebViewPage()),
   ];
