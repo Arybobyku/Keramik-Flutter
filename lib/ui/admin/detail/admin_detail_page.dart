@@ -40,16 +40,17 @@ class _AdminDetailPageState extends State<AdminDetailPage> {
                             physics: NeverScrollableScrollPhysics(),
                             itemCount:valueAdmin.detailPeminjaman.bukuModel.length,
                             itemBuilder: (context,index){
-                         return Padding(
-                           padding: const EdgeInsets.only(top: 20),
-                           child: GestureDetector(
-                             onTap: (){
-                               Get.toNamed(Routes.detailBukuGeneral,arguments: valueAdmin.detailPeminjaman.bukuModel[index]);
-                             },
-                             child: HorizontalBook(
-                                  bukuModel: valueAdmin.detailPeminjaman.bukuModel[index]),
-                           ),
-                         );
+                            return Container();
+                         // return Padding(
+                         //   padding: const EdgeInsets.only(top: 20),
+                         //   child: GestureDetector(
+                         //     onTap: (){
+                         //       Get.toNamed(Routes.detailBukuGeneral,arguments: valueAdmin.detailPeminjaman.bukuModel[index]);
+                         //     },
+                         //     child: HorizontalKeramik(
+                         //          keramikModel: valueAdmin.detailPeminjaman.bukuModel[index]),
+                         //   ),
+                         // );
                         }),
 
                         SizedBox(height: 20),

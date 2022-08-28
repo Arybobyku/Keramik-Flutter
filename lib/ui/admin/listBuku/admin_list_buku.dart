@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/provider/buku.dart';
+import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/horizontal_book.dart';
 import 'package:provider/provider.dart';
@@ -20,21 +20,21 @@ class AdminListBukuPage extends StatelessWidget {
             style: TextStyle(color: ColorPalette.generalPrimaryColor),
           ),
         ),
-        body: Consumer<BukuProvider>(builder: (context, valueBuku, _) {
+        body: Consumer<KeramikProvider>(builder: (context, valueKeramik, _) {
           return Container(
             margin: EdgeInsets.only(left: 20,right: 20),
             child: ListView.builder(
-              itemCount: valueBuku.listBuku.length,
+              itemCount: valueKeramik.listKeramik.length,
               itemBuilder: (context,index) {
-                var buku = valueBuku.listBuku[index];
+                var keramik = valueKeramik.listKeramik[index];
                 return GestureDetector(
                   onTap: (){
-                    Get.toNamed(Routes.detailBukuGeneral,arguments: buku);
+                    Get.toNamed(Routes.detailBukuGeneral,arguments: keramik);
                   },
                   child: Column(
                     children: [
                         SizedBox(height: 20),
-                      HorizontalBook(bukuModel: buku),
+                      HorizontalKeramik(keramikModel: keramik),
                     ],
                   ),
                 );

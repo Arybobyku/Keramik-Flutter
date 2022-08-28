@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
-import 'package:keramik/provider/buku.dart';
+import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/service/notification.dart';
 import 'package:keramik/ui/user/home/user_home_page.dart';
@@ -27,7 +27,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
   @override
   void initState() {
     if(getData){
-      Provider.of<BukuProvider>(context, listen: false).doGetAllBook();
+      Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
       Provider.of<PeminjamanProvider>(context, listen: false).getRiwayatSaya();
       getData = false;
 

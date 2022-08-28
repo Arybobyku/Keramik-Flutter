@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:keramik/model/buku_model.dart';
+import 'package:keramik/model/keramik_model.dart';
 
-class HorizontalBook extends StatelessWidget {
-  const HorizontalBook({Key? key, required this.bukuModel}) : super(key: key);
+class HorizontalKeramik extends StatelessWidget {
+  const HorizontalKeramik({Key? key, required this.keramikModel}) : super(key: key);
 
-  final BukuModel bukuModel;
+  final KeramikModel keramikModel;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         CachedNetworkImage(
-          imageUrl: bukuModel.gambar!,
+          imageUrl: keramikModel.gambar!,
           imageBuilder: (context, imageProvider) => Container(
             height: 200,
             width: 150,
@@ -33,26 +34,26 @@ class HorizontalBook extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             children: [
               Text(
-                bukuModel.judul,
+                keramikModel.nama ?? "-",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
               Text(
-                bukuModel.anakJudul,
+                keramikModel.luas.toString(),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 4),
               Text(
-                bukuModel.pengarang,
+                keramikModel.ruang ?? "-",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 4),
               Text(
-                bukuModel.penerbit,
+                keramikModel.deskripsi ?? "-",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16),

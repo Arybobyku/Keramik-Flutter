@@ -41,9 +41,7 @@ class UserDetailRiwayat extends StatelessWidget {
                                 onTap: (){
                                   Get.toNamed(Routes.detailBukuGeneral,arguments:peminjaman.detailRiwayat.bukuModel[index]);
                                 },
-                                child: HorizontalBook(
-                                    bukuModel:
-                                        peminjaman.detailRiwayat.bukuModel[index]),
+                                child: SizedBox(),
                               ),
                             );
                           },

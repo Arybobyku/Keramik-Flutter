@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
-import 'package:keramik/provider/buku.dart';
+import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/box_info.dart';
@@ -30,7 +30,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
       // EasyLoading.show(status: "Loading");
       Provider.of<AdminProvider>(context, listen: false).getAllPeminjaman();
       Provider.of<AdminProvider>(context, listen: false).getAllUser();
-      Provider.of<BukuProvider>(context, listen: false).doGetAllBook();
+      Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
       getData = false;
     }
     super.initState();
@@ -68,16 +68,16 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                   ),
                   HorizontalIconLabel(
                     icon: Icons.person,
-                    label: "Anggota",
+                    label: "User",
                     ontap: (){
                       Get.toNamed(Routes.adminCheckUser);
                     },
                   ),
                   HorizontalIconLabel(
                     icon: Icons.book,
-                    label: "Tambah Buku",
+                    label: "Tambah Keramik",
                     ontap: (){
-                      Get.toNamed(Routes.adminTambahBuku);
+                      Get.toNamed(Routes.adminTambahKeramik);
                     },
                   ),
                   HorizontalIconLabel(
@@ -85,44 +85,6 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                     label: "Informasi",
                     ontap: (){
                       Get.toNamed(Routes.adminInfo);
-                    },
-                  ),
-                  SizedBox(height: 10,),
-                  Divider(height: 1,color: ColorPalette.generalGrey,),
-                  HorizontalIconLabel(
-                    icon: Icons.window,
-                    label: "Katalog",
-                    ontap: (){
-                    },
-                  ),
-                  HorizontalIconLabel(
-                    icon: Icons.wysiwyg,
-                    label: "Laporan",
-                    ontap: (){
-                    },
-                  ),
-                  HorizontalIconLabel(
-                    icon: Icons.all_inbox_outlined,
-                    label: "Survey",
-                    ontap: (){
-                    },
-                  ),
-                  HorizontalIconLabel(
-                    icon: Icons.add_business_rounded,
-                    label: "Layanan Koleksi Digital",
-                    ontap: (){
-                    },
-                  ),
-                  HorizontalIconLabel(
-                    icon: Icons.admin_panel_settings,
-                    label: "Administrasi",
-                    ontap: (){
-                    },
-                  ),
-                  HorizontalIconLabel(
-                    icon: Icons.account_tree_sharp,
-                    label: "Pengaturan",
-                    ontap: (){
                     },
                   ),
                   SizedBox(height: 10,),
@@ -144,8 +106,8 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
           title: Text("Beranda",style: TextStyle(color: ColorPalette.generalPrimaryColor),),
           backgroundColor: ColorPalette.generalBackgroundColor,
         ),
-        body: Consumer2<BukuProvider, AdminProvider>(
-            builder: (context, valuBuku, valueAdmin, _) {
+        body: Consumer2<KeramikProvider, AdminProvider>(
+            builder: (context, valuKeramik, valueAdmin, _) {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -156,8 +118,8 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                         children: [
                           Expanded(
                               child:BoxInfo(
-                                title: "Jumlah Buku",
-                                value: valuBuku.listBuku.length.toString(),
+                                title: "Jumlah Keramik",
+                                value: valuKeramik.listKeramik.length.toString(),
                                 onTap: ()=> Get.toNamed(Routes.adminListBuku),
                               )
                           ),
@@ -180,7 +142,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                         children: [
                           Expanded(
                               child:BoxInfo(
-                                title: "Jumlah Anggota",
+                                title: "Jumlah User",
                                 value: valueAdmin.listAnggota.length.toString(),
                                 backgroundColor: ColorPalette.generalSoftGrey,
                                 onTap:()=> Get.toNamed(Routes.adminCheckUser),

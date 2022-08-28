@@ -48,7 +48,6 @@ class UserService {
         'role': 0,
         'photoProfile': path,
         'tempatLahir': user.tempatLahir,
-        'isOrder': false,
         'isValid': false,
       });
       return user;

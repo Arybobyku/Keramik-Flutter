@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:keramik/provider/buku.dart';
+import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/horizontal_book.dart';
 import 'package:keramik/ui/widget/search_bar.dart';
@@ -18,14 +18,14 @@ class _UserSearchPageState extends State<UserSearchPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Consumer<BukuProvider>(builder: (context, value, _) {
+        body: Consumer<KeramikProvider>(builder: (context, value, _) {
           return Column(
             children: [
               SizedBox(height: 15),
               SearchBar(
                 onChanged: (val) {
-                  Provider.of<BukuProvider>(context, listen: false)
-                      .searchBook(val);
+                  Provider.of<KeramikProvider>(context, listen: false)
+                      .searchKeramik(val);
                 },
               ),
               SizedBox(height: 15),
@@ -43,11 +43,11 @@ class _UserSearchPageState extends State<UserSearchPage> {
                                 horizontal: 20, vertical: 10),
                             child: GestureDetector(
                               onTap: (){
-                                Provider.of<BukuProvider>(context,listen: false).clickBukuDetail( value.searchResult[index]);
+                                Provider.of<KeramikProvider>(context,listen: false).clickKeramikDetail(value.searchResult[index]);
                                 Get.toNamed(Routes.detailBuku);
                               },
-                              child: HorizontalBook(
-                                bukuModel: value.searchResult[index],
+                              child: HorizontalKeramik(
+                                keramikModel: value.searchResult[index],
                               ),
                             ),
                           );

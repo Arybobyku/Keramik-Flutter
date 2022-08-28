@@ -2,16 +2,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/model/buku_model.dart';
+import 'package:keramik/model/keramik_model.dart';
 
 class BookContainer extends StatelessWidget {
   const BookContainer(
       {Key? key,
       this.imageHeight = 200,
       this.onTapBook,
-      required this.bukuModel})
+      required this.keramikModel})
       : super(key: key);
   final double imageHeight;
-  final BukuModel bukuModel;
+  final KeramikModel keramikModel;
   final Function()? onTapBook;
 
   @override
@@ -24,16 +25,10 @@ class BookContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedNetworkImage(
-              imageUrl: bukuModel.gambar!,
+              imageUrl: keramikModel.gambar!,
               imageBuilder: (context, imageProvider) => Container(
                 height: imageHeight,
                 width: 150,
-                foregroundDecoration: bukuModel.stok>0
-                    ? BoxDecoration()
-                    : BoxDecoration(
-                  color: ColorPalette.generalSoftGrey,
-                  backgroundBlendMode: BlendMode.saturation,
-                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   image: DecorationImage(
@@ -45,7 +40,7 @@ class BookContainer extends StatelessWidget {
             ),
             SizedBox(height: 10),
             Text(
-              bukuModel.judul,
+              keramikModel.nama ?? "-",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
@@ -53,7 +48,7 @@ class BookContainer extends StatelessWidget {
             SizedBox(height: 4),
             Expanded(
               child: Text(
-                bukuModel.pengarang,
+                keramikModel.ruang ?? "-",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 14),

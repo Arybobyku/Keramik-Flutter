@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
-import 'package:keramik/provider/buku.dart';
+import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/horizontal_icon_label.dart';
 import 'package:keramik/ui/widget/search_bar.dart';
@@ -27,13 +27,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
 
   @override
   void initState() {
-    // if (getData) {
-    //   // EasyLoading.show(status: "Loading");
-    //   Provider.of<AdminProvider>(context, listen: false).getAllPeminjaman();
-    //   Provider.of<AdminProvider>(context, listen: false).getAllUser();
-    //   Provider.of<BukuProvider>(context, listen: false).doGetAllBook();
-    //   getData = false;
-    // }
     super.initState();
   }
 
@@ -45,7 +38,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
           appBar: AppBar(
             backgroundColor: ColorPalette.generalBackgroundColor,
             title: Text(
-              "Aktivitas",
+              "Keramik",
               style: TextStyle(color: ColorPalette.generalPrimaryColor),
             ),
           ),
@@ -54,89 +47,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
             child: Column(
               children: [
                 SizedBox(height: 15),
-                SearchBar(
-                  title: "Cari nomor peminjaman",
-                  onTapSearch: () => Get.toNamed(Routes.adminSearch),
-                  enable: false,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 5),
-                      Expanded(
-                          child: SmallButton(
-                            text: "Booking",
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 0;
-                              });
-                            },
-                            invert: selectedIndex == 0,
-                          )),
-                      SizedBox(width: 5),
-                      Expanded(
-                          child: SmallButton(
-                            text: "Konfirmasi",
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 1;
-                              });
-                            },
-                            invert: selectedIndex == 1,
-                          )),
-                      SizedBox(width: 5),
-                      Expanded(
-                          child: SmallButton(
-                            text: "Peminjaman",
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 2;
-                              });
-                            },
-                            invert: selectedIndex == 2,
-                          )),
-                      SizedBox(width: 5),
-                      Expanded(
-                          child: SmallButton(
-                            text: "Selesai",
-                            onPressed: () {
-                              setState(() {
-                                selectedIndex = 3;
-                              });
-                            },
-                            invert: selectedIndex == 3,
-                          )),
-                      SizedBox(width: 5),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10),
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: valueAdmin.listPeminjaman.length,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-
-                    return valueAdmin.listPeminjaman[index].status==selectedIndex ||
-                        (selectedIndex==3 && valueAdmin.listPeminjaman[index].status==4)
-                        ? GestureDetector(
-                      onTap: () {
-                        Provider.of<AdminProvider>(context, listen: false)
-                            .onClickDetailPeminjaman(
-                            valueAdmin.listPeminjaman[index]);
-                        Get.toNamed(Routes.adminDetail);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            bottom: 20, left: 20, right: 20),
-                        child: StatusPeminjaman(
-                          peminjamanModel: valueAdmin.listPeminjaman[index],
-                        ),
-                      ),
-                    ):SizedBox();
-                  },
-                )
               ],
             ),
           ),
