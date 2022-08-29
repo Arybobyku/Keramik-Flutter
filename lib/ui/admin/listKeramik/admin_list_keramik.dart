@@ -6,8 +6,8 @@ import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/horizontal_book.dart';
 import 'package:provider/provider.dart';
 
-class AdminListBukuPage extends StatelessWidget {
-  const AdminListBukuPage({Key? key}) : super(key: key);
+class AdminListKeramikPage extends StatelessWidget {
+  const AdminListKeramikPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class AdminListBukuPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: ColorPalette.generalBackgroundColor,
           title: Text(
-            "List Buku",
+            "List Keramik",
             style: TextStyle(color: ColorPalette.generalPrimaryColor),
           ),
         ),
@@ -29,7 +29,7 @@ class AdminListBukuPage extends StatelessWidget {
                 var keramik = valueKeramik.listKeramik[index];
                 return GestureDetector(
                   onTap: (){
-                    Get.toNamed(Routes.detailBukuGeneral,arguments: keramik);
+                    Get.toNamed(Routes.detailKeramikGeneral,arguments: keramik);
                   },
                   child: Column(
                     children: [

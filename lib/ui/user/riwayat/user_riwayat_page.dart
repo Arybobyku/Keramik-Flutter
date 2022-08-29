@@ -60,7 +60,7 @@ class _UserRiwayatPageState extends State<UserRiwayatPage> {
                           ),
                         ),
                         Text(
-                          "Anda belum memiliki riwayat peminjaman",
+                          "Anda belum memiliki riwayat rekomendasi",
                           style: TextStyle(fontSize: 18),
                         )
                       ],

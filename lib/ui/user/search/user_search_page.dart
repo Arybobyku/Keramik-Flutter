@@ -43,8 +43,7 @@ class _UserSearchPageState extends State<UserSearchPage> {
                                 horizontal: 20, vertical: 10),
                             child: GestureDetector(
                               onTap: (){
-                                Provider.of<KeramikProvider>(context,listen: false).clickKeramikDetail(value.searchResult[index]);
-                                Get.toNamed(Routes.detailBuku);
+                                Get.toNamed(Routes.detailKeramikGeneral,arguments: value.searchResult[index]);
                               },
                               child: HorizontalKeramik(
                                 keramikModel: value.searchResult[index],

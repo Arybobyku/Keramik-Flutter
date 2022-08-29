@@ -76,22 +76,6 @@ class _AdminUserDetailState extends State<AdminUserDetailPage> {
                                     ],
                                   ),
                                 ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 8),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: value.selectedAnggota.isValid
-                                          ? ColorPalette.generalSoftGreen
-                                          : ColorPalette.generalSoftRed),
-                                  child: Text(
-                                    value.selectedAnggota.isValid
-                                        ? "Tervalidasi"
-                                        : "Belum Tervalidasi",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                )
                               ],
                             ),
                           ],
@@ -122,23 +106,6 @@ class _AdminUserDetailState extends State<AdminUserDetailPage> {
                   ),
                 ),
               ),
-              if (!value.selectedAnggota.isValid)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ButtonRounded(
-                    text: "Konfirmasi Anggota",
-                    onPressed: ()=>doKonfirmasiAnggota(value.selectedAnggota),
-                  ),
-                ),
-              if (value.selectedAnggota.isValid)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ButtonRounded(
-                    text: "Batalkan Konfirmasi Anggota",
-                    invert: true,
-                    onPressed: ()=>doBatalkanKonfirmasiAnggota(value.selectedAnggota),
-                  ),
-                )
             ],
           ),
         );
@@ -146,101 +113,4 @@ class _AdminUserDetailState extends State<AdminUserDetailPage> {
     );
   }
 
-  doKonfirmasiAnggota(UserModel userModel) async {
-    EasyLoading.show(status: "Loading...");
-    var result = await Provider.of<AdminProvider>(context, listen: false)
-        .konfirmasiAnggota(userModel);
-
-    result.fold((l) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.error,
-        title: "Gagal",
-        desc: l,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    }, (r) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.success,
-        title: "Sukses",
-        desc: "Anggota ${userModel.namaLengkap} sudah tervalidasi",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Get.back();
-            },
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    });
-  }
-
-  doBatalkanKonfirmasiAnggota(UserModel userModel) async {
-    EasyLoading.show(status: "Loading...");
-    var result = await Provider.of<AdminProvider>(context, listen: false)
-        .batalkanKonfirmasiAnggota(userModel);
-
-    result.fold((l) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.error,
-        title: "Gagal",
-        desc: l,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    }, (r) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.success,
-        title: "Sukses",
-        desc: "Anggota ${userModel.namaLengkap} berhasil dibatalkan",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Get.back();
-            },
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    });
-  }
 }

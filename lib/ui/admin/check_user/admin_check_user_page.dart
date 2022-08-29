@@ -18,7 +18,6 @@ class AdminCheckUserPage extends StatefulWidget {
 
 class _AdminCheckUserPageState extends State<AdminCheckUserPage> {
   bool getData = true;
-  bool userValidated = true;
 
   @override
   void initState() {
@@ -34,11 +33,10 @@ class _AdminCheckUserPageState extends State<AdminCheckUserPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorPalette.generalBackgroundColor,
         appBar: AppBar(
           backgroundColor: ColorPalette.generalBackgroundColor,
           title: Text(
-            "Anggota",
+            "User",
             style: TextStyle(color: ColorPalette.generalPrimaryColor),
           ),
         ),
@@ -48,43 +46,12 @@ class _AdminCheckUserPageState extends State<AdminCheckUserPage> {
               children: [
                 SizedBox(height: 20),
                 SearchBar(
-                  title: "Cari nomor anggota",
+                  title: "Cari user",
                   enable: true,
                   onSubmit: (val) {
                     Provider.of<AdminProvider>(context, listen: false)
                         .searchAnggota(val);
                   },
-                ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: SmallButton(
-                          text: 'Tervalidasi',
-                          invert: userValidated==true,
-                          onPressed: () {
-                            setState(() {
-                              userValidated = true;
-                            });
-                          },
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: SmallButton(
-                          text: 'Belum Tervalidasi',
-                          invert: userValidated==false,
-                          onPressed: () {
-                            setState(() {
-                              userValidated = false;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
                 SizedBox(height: 10),
                 ListView.builder(
@@ -93,68 +60,52 @@ class _AdminCheckUserPageState extends State<AdminCheckUserPage> {
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     var anggota = valueAdmin.listAnggotaSearch[index];
-                    return userValidated == anggota.isValid
-                        ? GestureDetector(
-                            onTap: () {
-                              Provider.of<AdminProvider>(context, listen: false)
-                                  .selectDetailAnggota(anggota);
-                              Get.toNamed(Routes.adminDetailAnggota);
-                            },
-                            child: Container(
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              padding: EdgeInsets.all(10),
-                              decoration: kRoundedContainer.copyWith(
-                                  border: Border.all(
-                                      color: Colors.white, width: 2)),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          "ID : " + anggota.uuid,
-                                          style: TextStyle(
-                                            fontSize: 16,
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: GestureDetector(
+                              onTap: () {
+                                Provider.of<AdminProvider>(context, listen: false)
+                                    .selectDetailAnggota(anggota);
+                                Get.toNamed(Routes.adminDetailAnggota);
+                              },
+                              child: Container(
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                padding: EdgeInsets.all(10),
+                                decoration: kRoundedContainer.copyWith(
+                                    border: Border.all(
+                                        color: Colors.white, width: 2)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "ID : " + anggota.uuid,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 10, vertical: 8),
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: anggota.isValid
-                                                ? ColorPalette.generalSoftGreen
-                                                : ColorPalette.generalSoftRed),
-                                        child: Text(
-                                          anggota.isValid
-                                              ? "Tervalidasi"
-                                              : "Belum Tervalidasi",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    anggota.namaLengkap,
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    anggota.email,
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  SizedBox(height: 5),
-                                ],
+                                      ],
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      anggota.namaLengkap,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      anggota.email,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    SizedBox(height: 5),
+                                  ],
+                                ),
                               ),
                             ),
-                          )
-                        : SizedBox();
+                    );
                   },
                 )
               ],

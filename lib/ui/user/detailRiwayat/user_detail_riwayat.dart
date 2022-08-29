@@ -39,7 +39,7 @@ class UserDetailRiwayat extends StatelessWidget {
                               padding: const EdgeInsets.only(top: 20),
                               child: GestureDetector(
                                 onTap: (){
-                                  Get.toNamed(Routes.detailBukuGeneral,arguments:peminjaman.detailRiwayat.bukuModel[index]);
+                                  Get.toNamed(Routes.detailKeramikGeneral,arguments:peminjaman.detailRiwayat.bukuModel[index]);
                                 },
                                 child: SizedBox(),
                               ),

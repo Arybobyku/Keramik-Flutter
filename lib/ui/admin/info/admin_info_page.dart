@@ -60,13 +60,6 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                       )
                   ),
                   HorizontalIconLabel(
-                    icon: Icons.volunteer_activism,
-                    label: "Aktivitas",
-                    ontap: (){
-                      Get.toNamed(Routes.adminHome);
-                    },
-                  ),
-                  HorizontalIconLabel(
                     icon: Icons.person,
                     label: "User",
                     ontap: (){
@@ -76,6 +69,13 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                   HorizontalIconLabel(
                     icon: Icons.book,
                     label: "Tambah Keramik",
+                    ontap: (){
+                      Get.toNamed(Routes.adminTambahKeramik);
+                    },
+                  ),
+                  HorizontalIconLabel(
+                    icon: Icons.subject,
+                    label: "Tambah Sub Kriteria",
                     ontap: (){
                       Get.toNamed(Routes.adminTambahKeramik);
                     },
@@ -120,26 +120,10 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                               child:BoxInfo(
                                 title: "Jumlah Keramik",
                                 value: valuKeramik.listKeramik.length.toString(),
-                                onTap: ()=> Get.toNamed(Routes.adminListBuku),
+                                onTap: ()=> Get.toNamed(Routes.adminListKeramik),
                               )
                           ),
                           SizedBox(width: 20),
-                          Expanded(
-                            child: BoxInfo(
-                              title: "Jumlah Buku Dipinjam",
-                              value: valueAdmin.listPeminjaman.where((element) => element.status==2).length.toString(),
-                              backgroundColor: ColorPalette.generalSoftRed,
-                              onTap: ()=>Get.toNamed(Routes.adminHome,arguments: 2),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
                           Expanded(
                               child:BoxInfo(
                                 title: "Jumlah User",
@@ -148,19 +132,9 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                 onTap:()=> Get.toNamed(Routes.adminCheckUser),
                               )
                           ),
-                          SizedBox(width: 20),
-                          Expanded(
-                            child: BoxInfo(
-                              title: "Riwayat Anggota",
-                              value: valueAdmin.listPeminjaman.where((element) => element.status>=3).length.toString(),
-                              backgroundColor: ColorPalette.generalSoftPurple,
-                              onTap: ()=>Get.toNamed(Routes.adminHome,arguments:3 ),
-                            ),
-                          )
                         ],
                       ),
                     ),
-
                   ],
                 ),
               );
