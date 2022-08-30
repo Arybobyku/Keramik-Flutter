@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
 import 'package:keramik/model/peminjaman_model.dart';
-import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/button_rounded.dart';
 import 'package:keramik/ui/widget/horizontal_book.dart';
@@ -19,136 +18,28 @@ class UserDetailRiwayat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Consumer<PeminjamanProvider>(builder: (context, peminjaman, _) {
-        return Scaffold(
-          body: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: peminjaman.detailRiwayat.bukuModel.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: GestureDetector(
-                                onTap: (){
-                                  Get.toNamed(Routes.detailKeramikGeneral,arguments:peminjaman.detailRiwayat.bukuModel[index]);
-                                },
-                                child: SizedBox(),
-                              ),
-                            );
-                          },
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          children: [
-                            Expanded(
-                              child:
-                              VerticalTitleValue(
-                                  title: 'ID Peminjaman',
-                                  value: peminjaman.detailRiwayat.id ?? "-"),
-                            ),
-                            StatusContainer(
-                                status: peminjaman.detailRiwayat.status)
-                          ],
-                        ),
-                        SizedBox(height: 20),
-                        VerticalTitleValue(
-                            title: 'Tanggal Pengembalian',
-                            value: parseDate(peminjaman
-                                .detailRiwayat.tanggalPengembalian
-                                .toString())),
-                        SizedBox(height: 20),
-                        VerticalTitleValue(
-                            title: 'Tanggal Peminjaman',
-                            value: parseDate(peminjaman
-                                .detailRiwayat.tanggalPeminjaman
-                                .toString())),
-                        SizedBox(height: 20),
-                        if (peminjaman.detailRiwayat.status == 2)
-                          VerticalTitleValue(
-                              title: 'Hari Pengembalian',
-                              value: getDurationDifference(
-                                  DateTime.now(),
-                                  peminjaman
-                                      .detailRiwayat.tanggalPengembalian!)),
-                      ],
-                    ),
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+
+
+                    ],
                   ),
                 ),
               ),
-              if (peminjaman.detailRiwayat.perpanjang < 1 &&
-                  peminjaman.detailRiwayat.status == 2 &&
-                  getDurationDifferenceInt(DateTime.now(), peminjaman.detailRiwayat.tanggalPengembalian!)>=0
-              )
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ButtonRounded(
-                    text: "Perpanjang peminjaman",
-                    onPressed: () {
-                      doPerpanjangan(context, peminjaman.detailRiwayat);
-                    },
-                  ),
-                )
-            ],
-          ),
-        );
-      }),
-    );
-  }
+            ),
 
-  doPerpanjangan(BuildContext context, PeminjamanModel peminjamanModel) async {
-    EasyLoading.show(status: "Loading...");
-    var result = await Provider.of<PeminjamanProvider>(context, listen: false)
-        .perpanjangPeminjaman(peminjamanModel);
-    result.fold((l) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.error,
-        title: "Gagal",
-        desc: l,
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    }, (r) {
-      EasyLoading.dismiss();
-      Alert(
-        context: context,
-        type: AlertType.success,
-        title: "Sukses",
-        desc: "Sukses perpanjang peminjaman",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Get.back();
-            },
-            color: ColorPalette.generalPrimaryColor,
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
-    });
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -35,24 +35,6 @@ class _AdminDetailPageState extends State<AdminDetailPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemCount:valueAdmin.detailPeminjaman.bukuModel.length,
-                            itemBuilder: (context,index){
-                            return Container();
-                         // return Padding(
-                         //   padding: const EdgeInsets.only(top: 20),
-                         //   child: GestureDetector(
-                         //     onTap: (){
-                         //       Get.toNamed(Routes.detailBukuGeneral,arguments: valueAdmin.detailPeminjaman.bukuModel[index]);
-                         //     },
-                         //     child: HorizontalKeramik(
-                         //          keramikModel: valueAdmin.detailPeminjaman.bukuModel[index]),
-                         //   ),
-                         // );
-                        }),
-
                         SizedBox(height: 20),
                         Row(
                           children: [

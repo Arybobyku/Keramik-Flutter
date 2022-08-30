@@ -6,13 +6,10 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/helper/constants.dart';
 import 'package:keramik/injection.dart';
-import 'package:keramik/local_storage_service.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
-import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/setup_locator.dart';
 import 'package:provider/provider.dart';
@@ -73,7 +70,6 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => KeramikProvider()),
-        ChangeNotifierProvider(create: (context) => PeminjamanProvider()),
         ChangeNotifierProvider(create: (context) => AdminProvider()),
       ],
       child: GetMaterialApp(

@@ -4,7 +4,6 @@ import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
-import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/book_container.dart';
 import 'package:keramik/ui/widget/search_bar.dart';
@@ -28,8 +27,8 @@ class _UserHomePageState extends State<UserHomePage> {
 
         },
       ),
-      body: Consumer3<KeramikProvider, PeminjamanProvider,AuthProvider>(
-          builder: (context, valueBuku, valuePeminjaman,valueAuth, child) {
+      body: Consumer2<KeramikProvider,AuthProvider>(
+          builder: (context, valueBuku,valueAuth, child) {
         return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

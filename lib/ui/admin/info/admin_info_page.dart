@@ -6,7 +6,6 @@ import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
-import 'package:keramik/provider/peminjaman.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/box_info.dart';
 import 'package:keramik/ui/widget/horizontal_icon_label.dart';
