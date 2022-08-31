@@ -10,6 +10,7 @@ import 'package:keramik/injection.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
+import 'package:keramik/provider/kriteria.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/setup_locator.dart';
 import 'package:provider/provider.dart';
@@ -71,6 +72,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => KeramikProvider()),
         ChangeNotifierProvider(create: (context) => AdminProvider()),
+        ChangeNotifierProvider(create: (context) => KriteriaProvider()),
       ],
       child: GetMaterialApp(
         builder: EasyLoading.init(),

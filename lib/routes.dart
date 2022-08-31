@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:keramik/ui/admin/check_user/admin_check_user_page.dart';
 import 'package:keramik/ui/admin/detail/admin_detail_page.dart';
 import 'package:keramik/ui/admin/info/admin_info_page.dart';
+import 'package:keramik/ui/admin/kriteria/kriteria_page.dart';
 import 'package:keramik/ui/admin/listKeramik/admin_list_keramik.dart';
-import 'package:keramik/ui/admin/search/admin_search_page.dart';
 import 'package:keramik/ui/admin/userDetail/admin_user_detial.dart';
 import 'package:keramik/ui/auth/login_page.dart';
 import 'package:keramik/ui/auth/register_page.dart';
@@ -26,8 +26,8 @@ class Routes {
   static const String search = "/search";
   static const String detailRiwayat = "/detailRiwayat";
   static const String adminDetail = "/adminDetail";
-  static const String adminSearch = "/adminSearch";
   static const String adminListKeramik = "/adminListKeramik";
+  static const String adminKriteria = "/adminKriteria";
   static const String adminInfo = "/adminInfo";
   static const String adminTambahKeramik = "/adminTambahKeramik";
   static const String adminCheckUser = "/adminCheckUser";
@@ -44,13 +44,13 @@ class Routes {
     GetPage(name: search, page:()=>UserSearchPage()),
     GetPage(name: detailRiwayat, page:()=>UserDetailRiwayat()),
     GetPage(name: adminDetail, page:()=>AdminDetailPage()),
-    GetPage(name: adminSearch, page:()=>AdminSearchPage()),
     GetPage(name: adminListKeramik, page:()=>AdminListKeramikPage()),
     GetPage(name: adminInfo, page:()=>AdminInfoPage()),
     GetPage(name: adminTambahKeramik, page:()=>AdminTambahKeramikPage()),
     GetPage(name: adminCheckUser, page:()=>AdminCheckUserPage()),
     GetPage(name: adminDetailAnggota, page:()=>AdminUserDetailPage()),
     GetPage(name: detailKeramikGeneral, page:()=>KeramikDetailPage()),
+    GetPage(name: adminKriteria, page:()=>KriteriaPage()),
     GetPage(name: webView, page:()=>WebViewPage()),
   ];
 }

@@ -6,7 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:keramik/model/keramik_model.dart';
 
 class KeramikService {
-  final CollectionReference _bukuReference =
+  final CollectionReference _keramikReference =
       FirebaseFirestore.instance.collection('Keramik');
   Reference ref = FirebaseStorage.instance.ref();
 
@@ -33,7 +33,7 @@ class KeramikService {
 
   Future<void> setKeramik(KeramikModel keramikModel)async{
       try{
-       await  _bukuReference.doc().set({
+       await  _keramikReference.doc().set({
          'nama': keramikModel.nama,
          'gambar': keramikModel.gambar,
          'tekstur': keramikModel.tekstur,
@@ -52,7 +52,7 @@ class KeramikService {
   Future<List<KeramikModel>> getKeramik()async{
     try{
       print("Get Keramik From Firbase");
-      QuerySnapshot result = await _bukuReference.get();
+      QuerySnapshot result = await _keramikReference.get();
       List<KeramikModel> keramikFromFirebase = result.docs.map((e){
         return KeramikModel.fromjson(e.data() as Map<String, dynamic>, e.id);
       }).toList();

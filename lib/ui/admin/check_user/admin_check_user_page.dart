@@ -4,9 +4,6 @@ import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/routes.dart';
-import 'package:keramik/ui/widget/search_bar.dart';
-import 'package:keramik/ui/widget/small_button.dart';
-import 'package:keramik/ui/widget/status_container.dart';
 import 'package:provider/provider.dart';
 
 class AdminCheckUserPage extends StatefulWidget {

@@ -6,6 +6,7 @@ import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/admin.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
+import 'package:keramik/provider/kriteria.dart';
 import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/box_info.dart';
 import 'package:keramik/ui/widget/horizontal_icon_label.dart';
@@ -28,6 +29,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
     if (getData) {
       // EasyLoading.show(status: "Loading");
       Provider.of<AdminProvider>(context, listen: false).getAllUser();
+      Provider.of<KriteriaProvider>(context, listen: false).doGetAllKriteria();
       Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
       getData = false;
     }
@@ -78,13 +80,6 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                       Get.toNamed(Routes.adminTambahKeramik);
                     },
                   ),
-                  HorizontalIconLabel(
-                    icon: Icons.info,
-                    label: "Informasi",
-                    ontap: (){
-                      Get.toNamed(Routes.adminInfo);
-                    },
-                  ),
                   SizedBox(height: 10,),
                   Divider(height: 1,color: ColorPalette.generalGrey,),
                   HorizontalIconLabel(
@@ -103,9 +98,10 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
         appBar: AppBar(
           title: Text("Beranda",style: TextStyle(color: ColorPalette.generalPrimaryColor),),
           backgroundColor: Colors.white,
+          elevation: 0,
         ),
-        body: Consumer2<KeramikProvider, AdminProvider>(
-            builder: (context, valuKeramik, valueAdmin, _) {
+        body: Consumer3<KeramikProvider, AdminProvider,KriteriaProvider>(
+            builder: (context, valuKeramik, valueAdmin, valueKriteria,_) {
               return SingleChildScrollView(
                 child: Column(
                   children: [
@@ -129,6 +125,28 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
                                 backgroundColor: ColorPalette.generalSoftGrey,
                                 onTap:()=> Get.toNamed(Routes.adminCheckUser),
                               )
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child:BoxInfo(
+                                title: "Jumlah Kriteria",
+                                value: valueKriteria.listKriteria.length.toString(),
+                                backgroundColor: ColorPalette.generalSoftPurple,
+                                onTap: (){
+                                Get.toNamed(Routes.adminKriteria);
+                                },
+                              )
+                          ),
+                          SizedBox(width: 20),
+                          Expanded(
+                              child:SizedBox(),
                           ),
                         ],
                       ),

@@ -14,12 +14,14 @@ class AdminListKeramikPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorPalette.generalBackgroundColor,
+          backgroundColor: Colors.white,
+          elevation: 0,
           title: Text(
             "List Keramik",
             style: TextStyle(color: ColorPalette.generalPrimaryColor),
           ),
         ),
+        backgroundColor: ColorPalette.generalBackgroundColor,
         body: Consumer<KeramikProvider>(builder: (context, valueKeramik, _) {
           return Container(
             margin: EdgeInsets.only(left: 20,right: 20),
