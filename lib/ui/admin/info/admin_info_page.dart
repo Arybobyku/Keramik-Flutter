@@ -27,7 +27,6 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
   void initState() {
     if (getData) {
       // EasyLoading.show(status: "Loading");
-      Provider.of<AdminProvider>(context, listen: false).getAllPeminjaman();
       Provider.of<AdminProvider>(context, listen: false).getAllUser();
       Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
       getData = false;
@@ -103,7 +102,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
         ),
         appBar: AppBar(
           title: Text("Beranda",style: TextStyle(color: ColorPalette.generalPrimaryColor),),
-          backgroundColor: ColorPalette.generalBackgroundColor,
+          backgroundColor: Colors.white,
         ),
         body: Consumer2<KeramikProvider, AdminProvider>(
             builder: (context, valuKeramik, valueAdmin, _) {

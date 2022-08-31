@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:keramik/model/buku_model.dart';
 import 'package:keramik/model/keramik_model.dart';
 
 class KeramikService {
@@ -64,13 +63,5 @@ class KeramikService {
     }
   }
 
-  Future<BukuModel> getBukuById(String id) async {
-    try {
-      DocumentSnapshot snapshot = await _bukuReference.doc(id).get();
-      return BukuModel.fromjson(snapshot.data() as Map<String, dynamic> , id);
-    } catch (e) {
-      rethrow;
-    }
-  }
 
 }

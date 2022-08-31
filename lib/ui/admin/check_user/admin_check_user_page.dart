@@ -34,26 +34,18 @@ class _AdminCheckUserPageState extends State<AdminCheckUserPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: ColorPalette.generalBackgroundColor,
+          backgroundColor: Colors.white,
+          elevation: 0,
           title: Text(
             "User",
             style: TextStyle(color: ColorPalette.generalPrimaryColor),
           ),
         ),
+        backgroundColor: ColorPalette.generalBackgroundColor,
         body: Consumer<AdminProvider>(builder: (context, valueAdmin, _) {
           return SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 20),
-                SearchBar(
-                  title: "Cari user",
-                  enable: true,
-                  onSubmit: (val) {
-                    Provider.of<AdminProvider>(context, listen: false)
-                        .searchAnggota(val);
-                  },
-                ),
-                SizedBox(height: 10),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: valueAdmin.listAnggotaSearch.length,

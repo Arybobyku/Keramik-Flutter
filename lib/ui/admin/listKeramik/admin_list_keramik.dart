@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/routes.dart';
-import 'package:keramik/ui/widget/horizontal_book.dart';
+import 'package:keramik/ui/widget/horizontal_keramik.dart';
 import 'package:provider/provider.dart';
 
 class AdminListKeramikPage extends StatelessWidget {

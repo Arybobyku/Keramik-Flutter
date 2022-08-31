@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:keramik/provider/admin.dart';
-import 'package:keramik/routes.dart';
-import 'package:keramik/ui/widget/search_bar.dart';
-import 'package:keramik/ui/widget/status_peminjaman.dart';
 import 'package:provider/provider.dart';
 
 class AdminSearchPage extends StatelessWidget {
@@ -16,30 +12,7 @@ class AdminSearchPage extends StatelessWidget {
         body: Consumer<AdminProvider>(builder: (context, value, _) {
           return Column(
             children: [
-              SizedBox(height: 15),
-              SearchBar(
-                title: "Cari nomor peminjaman",
-                onSubmit: (val) {
-                  Provider.of<AdminProvider>(context, listen: false)
-                      .searchPeminjamanById(val);
-                },
-              ),
-              SizedBox(height: 15),
-              if(value.searchPeminjaman!=null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: GestureDetector(
-                    onTap: (){
-                      Provider.of<AdminProvider>(context, listen: false)
-                          .onClickDetailPeminjaman(
-                          value.searchPeminjaman!);
-                      Get.toNamed(Routes.adminDetail);
-                    },
-                    child: StatusPeminjaman(
-                      peminjamanModel:value.searchPeminjaman!,
-                    ),
-                  ),
-                ),
+
             ],
           );
         }),

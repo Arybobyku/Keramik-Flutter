@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:keramik/model/buku_model.dart';
 import 'package:keramik/model/keramik_model.dart';
 import 'package:keramik/service/keramik_service.dart';
 

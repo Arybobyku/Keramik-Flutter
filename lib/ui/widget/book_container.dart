@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/model/buku_model.dart';
 import 'package:keramik/model/keramik_model.dart';
 
 class BookContainer extends StatelessWidget {
