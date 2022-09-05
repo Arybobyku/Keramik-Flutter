@@ -54,29 +54,33 @@ class _KeramikDetailPageState extends State<KeramikDetailPage> {
                           fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 20),
-                    VerticalTitleValue(
-                        title: 'Ruang',
-                        value: keramikModel.ruang ?? "-"),
-                    SizedBox(height: 15),
-                    VerticalTitleValue(
-                        title: 'Luas',
-                        value: keramikModel.luas.toString()),
+                    // VerticalTitleValue(
+                    //     title: 'Ruang',
+                    //     value: keramikModel.jenisRuang ?? "-"),
+                    // SizedBox(height: 15),
+                    // VerticalTitleValue(
+                    //     title: 'Ukuran Ruang',
+                    //     value: keramikModel.ukuranRuang ?? "-"),
+                    // SizedBox(height: 15),
+                    // VerticalTitleValue(
+                    //     title: 'Luas',
+                    //     value: keramikModel.jenisLuas.toString()),
                     SizedBox(height: 15),
                     VerticalTitleValue(
                         title: 'Harga',
                         value: keramikModel.harga.toString()),
-                    SizedBox(height: 15),
-                    VerticalTitleValue(
-                        title: 'Kualitas',
-                        value: keramikModel.kualitas.toString()),
-                    SizedBox(height: 15),
-                    VerticalTitleValue(
-                        title: 'Tekstur',
-                        value: keramikModel.tekstur.toString()),
-                    SizedBox(height: 15),
-                    VerticalTitleValue(
-                        title: 'Motif',
-                        value: keramikModel.motif.toString()),
+                    // SizedBox(height: 15),
+                    // VerticalTitleValue(
+                    //     title: 'Kualitas',
+                    //     value: keramikModel.jenisKualitas.toString()),
+                    // SizedBox(height: 15),
+                    // VerticalTitleValue(
+                    //     title: 'Tekstur',
+                    //     value: keramikModel.jenisTekstur.toString()),
+                    // SizedBox(height: 15),
+                    // VerticalTitleValue(
+                    //     title: 'Jenis Motif',
+                    //     value: keramikModel.jenisMotif.toString()),
                     SizedBox(height: 15),
                     VerticalTitleValue(
                         title: 'Deskripsi',

@@ -34,23 +34,25 @@ class HorizontalKeramik extends StatelessWidget {
             children: [
               Text(
                 keramikModel.nama ?? "-",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                maxLines: 5,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-              Text(
-                keramikModel.luas.toString(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 4),
-              Text(
-                keramikModel.ruang ?? "-",
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 4),
+              // Text(
+              //   keramikModel.jenisLuas.toString(),
+              //   maxLines: 1,
+              //   overflow: TextOverflow.ellipsis,
+              //   style: TextStyle(fontSize: 16),
+              // ),
+              // SizedBox(height: 4),
+              // Text(
+              //   keramikModel.jenisRuang ?? "-",
+              //   maxLines: 1,
+              //   overflow: TextOverflow.ellipsis,
+              //   style: TextStyle(fontSize: 16),
+              // ),
+              // SizedBox(height: 4),
               Text(
                 keramikModel.deskripsi ?? "-",
                 maxLines: 1,

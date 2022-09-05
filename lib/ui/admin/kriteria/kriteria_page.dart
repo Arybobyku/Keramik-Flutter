@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/provider/kriteria.dart';
+import 'package:keramik/ui/widget/button_rounded.dart';
 import 'package:keramik/ui/widget/input_field_rounded.dart';
 import 'package:provider/provider.dart';
 
@@ -45,12 +46,13 @@ class _KriteriaPageState extends State<KriteriaPage> {
                         hint: '',
                         initialValue:kriteria.bobot.toString(),
                         onChange: (val) {
-                          // user.namaLengkap = val;
+                          valueKriteria.listKriteria[index].bobot = int.parse(val);
                         },
                         secureText: false,
                       );
                     },
-                  )
+                  ),
+                  ButtonRounded(text: "Ubah")
                 ],
               ),
             ),

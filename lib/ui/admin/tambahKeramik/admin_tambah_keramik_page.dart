@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
+import 'package:keramik/helper/constants.dart';
 import 'package:keramik/model/keramik_model.dart';
 import 'package:keramik/provider/keramik.dart';
+import 'package:keramik/provider/kriteria.dart';
 import 'package:keramik/ui/widget/button_picker.dart';
 import 'package:keramik/ui/widget/button_rounded.dart';
 import 'package:keramik/ui/widget/dropdown_container.dart';
@@ -23,18 +25,38 @@ class AdminTambahKeramikPage extends StatefulWidget {
 
 class _AdminTambahKeramilPageState extends State<AdminTambahKeramikPage> {
   File? imageCoverFile = null;
-  String? ruang = null;
-  String? bobotRuang = null;
+
   String? nama = null;
-  double? luas = null;
-  String? bobotLuas= null;
-  double? harga = null;
-  String? kualitas = null;
-  String? bobotKualitas = null;
-  String? tekstur = null;
-  String? bobotTekstur = null;
-  String? motif = null;
-  String? bobotMotif = null;
+
+  //ruang
+  int? ruangTamu = null;
+  int? ruangDapur = null;
+  int? ruangKamarMandi = null;
+  int? ruangTeras = null;
+
+  //luas
+  int? luasKecil = null;
+  int? luasSedang = null;
+  int? luasBesar = null;
+  int? luasSangatBesar = null;
+
+  ///harga
+  int? harga = null;
+
+  ///kualitas
+  int? KW1 = null;
+  int? KW2 = null;
+  int? KW3 = null;
+
+  ///tekstur
+  int? teksturMatte = null;
+  int? teksturGlossy = null;
+
+  ///Motif
+  int? motifSederhana = null;
+  int? motifBiasa = null;
+  int? motifRumit = null;
+
   String? deskripsi = null;
 
   @override
@@ -51,228 +73,355 @@ class _AdminTambahKeramilPageState extends State<AdminTambahKeramikPage> {
           ),
         ),
         backgroundColor: ColorPalette.generalBackgroundColor,
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 20),
-                InputFieldRounded(
-                  label: "Nama",
-                  hint: "Nama",
-                  onChange: (val) {
-                    nama = val;
-                  },
-                  secureText: false,
-                ),
-                ///Ruang
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputFieldRounded(
-                        label: "Ruang",
-                        hint: "Ruang",
-                        onChange: (val) {
-                          ruang = val;
-                        },
-                        secureText: false,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: DropdownContainer(
-                        value: bobotRuang,
-                        onChanged: (val) {
-                          setState(() {
-                            bobotRuang = val;
-                          });
-                        },
-                        items: [
-                          "Sangat Baik",
-                          "Baik",
-                          "Biasa",
-                          "Kurang",
-                          "Sangat Kurang"
-                        ],
-                        hint: 'Bobot Ruang',
-                      ),
-                    )
-                  ],
-                ),
+        body: Consumer<KriteriaProvider>(builder: (context, valueKriteria, _) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 20),
+                  InputFieldRounded(
+                    label: "Nama",
+                    hint: "Nama",
+                    onChange: (val) {
+                      nama = val;
+                    },
+                    secureText: false,
+                  ),
 
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputFieldRounded(
-                        label: "Luas",
-                        hint: "Luas",
-                        onChange: (val) {
-                          luas = double.parse(val);
-                        },
-                        secureText: false,
+                  ///Ruang
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        "Ruang",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: DropdownContainer(
-                        value: bobotLuas,
-                        onChanged: (val) {
-                          setState(() {
-                            bobotLuas = val;
-                          });
-                        },
-                        items: [
-                          "Sangat Baik",
-                          "Baik",
-                          "Biasa",
-                          "Kurang",
-                          "Sangat Kurang"
-                        ],
-                        hint: 'Bobot Luas',
-                      ),
-                    )
-                  ],
-                ),
-                InputFieldRounded(
-                  label: "Harga",
-                  hint: "Harga",
-                  onChange: (val) {
-                    harga = double.parse(val);
-                  },
-                  secureText: false,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputFieldRounded(
-                        label: "Kualitas",
-                        hint: "Kualitas",
-                        onChange: (val) {
-                          kualitas = val;
-                        },
-                        secureText: false,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: DropdownContainer(
-                        value: bobotKualitas,
-                        onChanged: (val) {
-                          setState(() {
-                            bobotKualitas = val;
-                          });
-                        },
-                        items: [
-                          "Sangat Baik",
-                          "Baik",
-                          "Biasa",
-                          "Kurang",
-                          "Sangat Kurang"
-                        ],
-                        hint: 'Bobot Kualitas',
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputFieldRounded(
-                        label: "Tekstur",
-                        hint: "Tekstur",
-                        onChange: (val) {
-                          tekstur = val;
-                        },
-                        secureText: false,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: DropdownContainer(
-                        value: bobotTekstur,
-                        onChanged: (val) {
-                          setState(() {
-                            bobotTekstur = val;
-                          });
-                        },
-                        items: [
-                          "Sangat Baik",
-                          "Baik",
-                          "Biasa",
-                          "Kurang",
-                          "Sangat Kurang"
-                        ],
-                        hint: 'Bobot Tekstur',
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: InputFieldRounded(
-                        label: "Motif",
-                        hint: "Motif",
-                        onChange: (val) {
-                          motif = val;
-                        },
-                        secureText: false,
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-                    Expanded(
-                      child: DropdownContainer(
-                        value: bobotMotif,
-                        onChanged: (val) {
-                          setState(() {
-                            bobotMotif = val;
-                          });
-                        },
-                        items: [
-                          "Sangat Baik",
-                          "Baik",
-                          "Biasa",
-                          "Kurang",
-                          "Sangat Kurang"
-                        ],
-                        hint: 'Bobot Motif',
-                      ),
-                    )
-                  ],
-                ),
-                InputFieldRounded(
-                  label: "Deskripsi",
-                  hint: "Deskripsi",
-                  onChange: (val) {
-                    deskripsi = val;
-                  },
-                  secureText: false,
-                ),
-                imageCoverFile != null
-                    ? Container(
-                        margin: EdgeInsets.only(top: 15, bottom: 30),
-                        height: 200,
-                        width: 150,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: FileImage(imageCoverFile!),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Ruang Tamu",
+                              hint:  "Ruang Tamu",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                ruangTamu = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
                           ),
-                        ),
-                      )
-                    : ButtonPicker(
-                        onTap: () => doImagePicker(),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Ruang Dapur",
+                              hint: "Ruang Dapur",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                ruangDapur = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                        ],
                       ),
-                ButtonRounded(
-                  text: "Tambah",
-                  onPressed: () => doTambahBuku(),
-                )
-              ],
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Kamar Mandi",
+                              hint: "Kamar Mandi",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                ruangKamarMandi = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Ruang Teras",
+                              hint: "Ruang Teras",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                ruangTeras = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  ///Luas
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        "Luas",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Kecil",
+                              hint: "Kecil",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                luasKecil = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Sedang",
+                              hint: "Sedang",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                luasSedang = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Besar",
+                              hint: "Besar",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                luasBesar = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: InputFieldRounded(
+                              label: "Sangat Besar",
+                              hint: "Sangat Besar",
+                              keyboardType: TextInputType.number,
+                              onChange: (val) {
+                                luasSangatBesar = int.parse(val);
+                              },
+                              secureText: false,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  /// Harga
+                  SizedBox(height: 10),
+                  Text(
+                    "Harga",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  InputFieldRounded(
+                    label: "Harga",
+                    hint: "Harga",
+                    keyboardType: TextInputType.number,
+                    onChange: (val) {
+                      harga = int.parse(val);
+                    },
+                    secureText: false,
+                  ),
+
+                  ///Kualitas
+                  SizedBox(height: 10),
+                  Text(
+                    "Kualitas",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "KW3",
+                          hint: "KW3",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            KW3 = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "KW2",
+                          hint: "KW2",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            KW2 = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "KW1",
+                          hint: "KW1",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            KW1 = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ///tekstur
+                  SizedBox(height: 10),
+                  Text(
+                    "Tekstur",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "Matte/Rustic/Unpolished",
+                          hint: "Matte/Rustic/Unpolished",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            teksturMatte = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "Glossy/Polished",
+                          hint: "Glossy/Polished",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            teksturGlossy = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ///motif
+                  SizedBox(height: 10),
+                  Text(
+                    "Motif",
+                    style: TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "Sederhana",
+                          hint: "Sederhana",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            motifSederhana = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "Biasa",
+                          hint: "Biasa",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            motifBiasa = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: InputFieldRounded(
+                          label: "Rumit",
+                          hint: "Rumit",
+                          keyboardType: TextInputType.number,
+                          onChange: (val) {
+                            motifRumit = int.parse(val);
+                          },
+                          secureText: false,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  ///deskripsi
+                  InputFieldRounded(
+                    label: "Deskripsi",
+                    hint: "Deskripsi",
+                    onChange: (val) {
+                      deskripsi = val;
+                    },
+                    secureText: false,
+                  ),
+                  imageCoverFile != null
+                      ? Container(
+                          margin: EdgeInsets.only(top: 15, bottom: 30),
+                          height: 200,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: FileImage(imageCoverFile!),
+                            ),
+                          ),
+                        )
+                      : ButtonPicker(
+                          onTap: () => doImagePicker(),
+                        ),
+                  ButtonRounded(
+                    text: "Tambah",
+                    onPressed: () => doTambahKeramik(),
+                  )
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
@@ -292,25 +441,47 @@ class _AdminTambahKeramilPageState extends State<AdminTambahKeramikPage> {
     }
   }
 
-  doTambahBuku() async {
-    if (imageCoverFile != null &&
-        nama != null &&
-        ruang != null &&
-        luas != null &&
+  doTambahKeramik() async {
+    if (nama != null &&
+        ruangTeras != null &&
+        ruangKamarMandi != null &&
+        ruangDapur != null &&
+        ruangTamu != null &&
+        luasSangatBesar != null &&
+        luasBesar != null &&
+        luasSedang != null &&
+        luasKecil != null &&
         harga != null &&
-        kualitas != null &&
-        tekstur != null &&
-        motif != null &&
+        KW3 != null &&
+        KW2 != null &&
+        KW1 != null &&
+        teksturMatte != null &&
+        teksturGlossy != null &&
+        motifRumit != null &&
+        motifBiasa != null &&
+        motifSederhana != null &&
         deskripsi != null) {
       var keramik = KeramikModel(
-          nama: nama,
-          deskripsi: deskripsi,
-          harga: harga,
-          kualitas: kualitas,
-          luas: luas,
-          motif: motif,
-          ruang: ruang,
-          tekstur: tekstur);
+        nama: nama,
+        deskripsi: deskripsi,
+        harga: harga,
+        ruangTeras: ruangTeras,
+        ruangKamarMandi: ruangKamarMandi,
+        ruangDapur: ruangDapur,
+        ruangTamu: ruangTamu,
+        luasSangatBesar: luasSangatBesar,
+        luasBesar: luasBesar,
+        luasSedang: luasSedang,
+        luasKecil: luasKecil,
+        KW3: KW3,
+        KW2: KW2,
+        KW1: KW1,
+        teksturMatte: teksturMatte,
+        teksturGlossy: teksturGlossy,
+        motifRumit: motifRumit,
+        motifBiasa: motifBiasa,
+        motifSederhana: motifSederhana,
+      );
 
       EasyLoading.show(status: "Loading");
 
@@ -322,7 +493,7 @@ class _AdminTambahKeramilPageState extends State<AdminTambahKeramikPage> {
         Alert(
           context: context,
           type: AlertType.error,
-          title: "Gagal menambahkan buku",
+          title: "Gagal menambahkan keramik",
           desc: l,
           buttons: [
             DialogButton(
@@ -344,8 +515,8 @@ class _AdminTambahKeramilPageState extends State<AdminTambahKeramikPage> {
       Alert(
         context: context,
         type: AlertType.error,
-        title: "Gagal menambahkan buku",
-        desc: "Harap isi seluruh formulir",
+        title: "Gagal menambahkan keramik",
+        desc: "Harap isi seluruh form",
         buttons: [
           DialogButton(
             child: Text(

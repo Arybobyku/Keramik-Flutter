@@ -9,6 +9,7 @@ import 'package:keramik/ui/auth/login_page.dart';
 import 'package:keramik/ui/auth/register_page.dart';
 import 'package:keramik/ui/navigator_page.dart';
 import 'package:keramik/ui/user/detailRiwayat/user_detail_riwayat.dart';
+import 'package:keramik/ui/user/form/user_form_page.dart';
 import 'package:keramik/ui/user/main_menu_page.dart';
 import 'package:keramik/ui/web_view.dart';
 
@@ -27,6 +28,7 @@ class Routes {
   static const String detailRiwayat = "/detailRiwayat";
   static const String adminDetail = "/adminDetail";
   static const String adminListKeramik = "/adminListKeramik";
+  static const String userFormPage = "/userFormPage";
   static const String adminKriteria = "/adminKriteria";
   static const String adminInfo = "/adminInfo";
   static const String adminTambahKeramik = "/adminTambahKeramik";
@@ -44,6 +46,7 @@ class Routes {
     GetPage(name: search, page:()=>UserSearchPage()),
     GetPage(name: detailRiwayat, page:()=>UserDetailRiwayat()),
     GetPage(name: adminDetail, page:()=>AdminDetailPage()),
+    GetPage(name: userFormPage, page:()=>UserFormPage()),
     GetPage(name: adminListKeramik, page:()=>AdminListKeramikPage()),
     GetPage(name: adminInfo, page:()=>AdminInfoPage()),
     GetPage(name: adminTambahKeramik, page:()=>AdminTambahKeramikPage()),

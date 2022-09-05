@@ -30,6 +30,7 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
       // EasyLoading.show(status: "Loading");
       Provider.of<AdminProvider>(context, listen: false).getAllUser();
       Provider.of<KriteriaProvider>(context, listen: false).doGetAllKriteria();
+      Provider.of<KriteriaProvider>(context, listen: false).doGetSubKriteriaRuang();
       Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
       getData = false;
     }
@@ -102,56 +103,67 @@ class _AdminInfoPageState extends State<AdminInfoPage> {
         ),
         body: Consumer3<KeramikProvider, AdminProvider,KriteriaProvider>(
             builder: (context, valuKeramik, valueAdmin, valueKriteria,_) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 20),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child:BoxInfo(
-                                title: "Jumlah Keramik",
-                                value: valuKeramik.listKeramik.length.toString(),
-                                onTap: ()=> Get.toNamed(Routes.adminListKeramik),
-                              )
+                return RefreshIndicator(
+                onRefresh: ()async{
+                  Provider.of<AdminProvider>(context, listen: false).getAllUser();
+                  Provider.of<KriteriaProvider>(context, listen: false).doGetAllKriteria();
+                  Provider.of<KriteriaProvider>(context, listen: false).doGetSubKriteriaRuang();
+                  Provider.of<KeramikProvider>(context, listen: false).doGetAllKeramik();
+                return;
+                },
+                child: Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 20),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child:BoxInfo(
+                                    title: "Jumlah Keramik",
+                                    value: valuKeramik.listKeramik.length.toString(),
+                                    onTap: ()=> Get.toNamed(Routes.adminListKeramik),
+                                  )
+                              ),
+                              SizedBox(width: 20),
+                              Expanded(
+                                  child:BoxInfo(
+                                    title: "Jumlah User",
+                                    value: valueAdmin.listAnggota.length.toString(),
+                                    backgroundColor: ColorPalette.generalSoftGrey,
+                                    onTap:()=> Get.toNamed(Routes.adminCheckUser),
+                                  )
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 20),
-                          Expanded(
-                              child:BoxInfo(
-                                title: "Jumlah User",
-                                value: valueAdmin.listAnggota.length.toString(),
-                                backgroundColor: ColorPalette.generalSoftGrey,
-                                onTap:()=> Get.toNamed(Routes.adminCheckUser),
-                              )
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                  child:BoxInfo(
+                                    title: "Jumlah Kriteria",
+                                    value: valueKriteria.listKriteria.length.toString(),
+                                    backgroundColor: ColorPalette.generalSoftPurple,
+                                    onTap: (){
+                                    Get.toNamed(Routes.adminKriteria);
+                                    },
+                                  )
+                              ),
+                              SizedBox(width: 20),
+                              Expanded(
+                                  child:SizedBox(),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 20),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        children: [
-                          Expanded(
-                              child:BoxInfo(
-                                title: "Jumlah Kriteria",
-                                value: valueKriteria.listKriteria.length.toString(),
-                                backgroundColor: ColorPalette.generalSoftPurple,
-                                onTap: (){
-                                Get.toNamed(Routes.adminKriteria);
-                                },
-                              )
-                          ),
-                          SizedBox(width: 20),
-                          Expanded(
-                              child:SizedBox(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               );
             }),

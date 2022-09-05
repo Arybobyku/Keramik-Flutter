@@ -23,9 +23,7 @@ class _UserHomePageState extends State<UserHomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorPalette.generalPrimaryColor,
         child: Icon(Icons.find_in_page_sharp,color: Colors.white,),
-        onPressed: (){
-
-        },
+        onPressed: ()=>Get.toNamed(Routes.userFormPage),
       ),
       body: Consumer2<KeramikProvider,AuthProvider>(
           builder: (context, valueBuku,valueAuth, child) {
@@ -62,7 +60,7 @@ class _UserHomePageState extends State<UserHomePage> {
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.45,
+                      childAspectRatio: 0.65,
                       crossAxisSpacing: 20),
                   itemCount: valueBuku.listKeramik.length,
                   shrinkWrap: true,

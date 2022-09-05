@@ -36,13 +36,24 @@ class KeramikService {
        await  _keramikReference.doc().set({
          'nama': keramikModel.nama,
          'gambar': keramikModel.gambar,
-         'tekstur': keramikModel.tekstur,
-         'ruang': keramikModel.ruang,
-         'motif': keramikModel.motif,
-         'luas': keramikModel.luas,
-         'kualitas': keramikModel.kualitas,
-         'harga': keramikModel.harga,
          'deskripsi': keramikModel.deskripsi,
+         'harga': keramikModel.harga,
+         'ruangTamu': keramikModel.ruangTamu,
+         'ruangDapur': keramikModel.ruangDapur,
+         'ruangKamarMandi': keramikModel.ruangKamarMandi,
+         'ruangTeras': keramikModel.ruangTeras,
+         'luasKecil': keramikModel.luasKecil,
+         'luasSedang': keramikModel.luasSedang,
+         'luasBesar': keramikModel.luasBesar,
+         'luasSangatBesar': keramikModel.luasSangatBesar,
+         'KW3': keramikModel.KW3,
+         'KW2': keramikModel.KW2,
+         'KW1': keramikModel.KW1,
+         'teksturGlossy': keramikModel.teksturGlossy,
+         'teksturMatte': keramikModel.teksturMatte,
+         'motifRumit': keramikModel.motifRumit,
+         'motifBiasa': keramikModel.motifBiasa,
+         'motifSederhana': keramikModel.motifSederhana,
         });
       }catch(e){
         rethrow;
@@ -51,7 +62,7 @@ class KeramikService {
 
   Future<List<KeramikModel>> getKeramik()async{
     try{
-      print("Get Keramik From Firbase");
+      print("Get Keramik From Firebase");
       QuerySnapshot result = await _keramikReference.get();
       List<KeramikModel> keramikFromFirebase = result.docs.map((e){
         return KeramikModel.fromjson(e.data() as Map<String, dynamic>, e.id);
