@@ -86,7 +86,6 @@ class _KeramikDetailPageState extends State<KeramikDetailPage> {
                         title: 'Deskripsi',
                         value: keramikModel.deskripsi.toString()),
                     SizedBox(height: 15),
-                    SizedBox(height: 15),
                   ],
                 ),
               ),

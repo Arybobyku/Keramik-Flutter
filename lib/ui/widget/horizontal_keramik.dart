@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:keramik/model/keramik_model.dart';
 
 class HorizontalKeramik extends StatelessWidget {
-  const HorizontalKeramik({Key? key, required this.keramikModel}) : super(key: key);
+  const HorizontalKeramik({Key? key, required this.keramikModel,this.total}) : super(key: key);
 
   final KeramikModel keramikModel;
+  final double? total;
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +40,16 @@ class HorizontalKeramik extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 20),
-              // Text(
-              //   keramikModel.jenisLuas.toString(),
-              //   maxLines: 1,
-              //   overflow: TextOverflow.ellipsis,
-              //   style: TextStyle(fontSize: 16),
-              // ),
-              // SizedBox(height: 4),
-              // Text(
-              //   keramikModel.jenisRuang ?? "-",
-              //   maxLines: 1,
-              //   overflow: TextOverflow.ellipsis,
-              //   style: TextStyle(fontSize: 16),
-              // ),
-              // SizedBox(height: 4),
               Text(
                 keramikModel.deskripsi ?? "-",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 10),
+              if(total!=null)
+              Text(
+                "Hasil : ${total!.toStringAsFixed(4)}%",
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 16),

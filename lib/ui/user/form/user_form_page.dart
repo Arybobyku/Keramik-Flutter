@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
 import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/provider/kriteria.dart';
+import 'package:keramik/routes.dart';
 import 'package:keramik/ui/widget/button_rounded.dart';
 import 'package:keramik/ui/widget/dropdown_container.dart';
 import 'package:keramik/ui/widget/input_field_rounded.dart';
@@ -119,15 +121,17 @@ class _UserFormPageState extends State<UserFormPage> {
                     ),
                     ButtonRounded(
                       text: "Pilih",
-                      onPressed: (){
-
-                        valueKeramik.doRekomendasiKeramik(
+                      onPressed: ()async{
+                     var result = await   valueKeramik.doRekomendasiKeramik(
                             mapRuangDropdown(jenisRuang!)!,
                             mapLuasDropdown(jenisLuas!)!,
                             mapKualitasDropdown(jenisKualitas!)!,
                             mapTeksturDropdown(jenisTekstur!)!,
                             mapMotifDropdown(jenisMotif!)!,
                             valueKriteria.listKriteria);
+
+                     Get.toNamed(Routes.hasil,arguments: result);
+
                       },
                     )
                   ],

@@ -12,7 +12,7 @@ class KeramikProvider extends ChangeNotifier {
   List<KeramikModel> listKeramik = [];
   List<KeramikModel> searchResult = [];
 
-  KeramikModel? rekomendasiKeramik = null;
+  KeramikRekomendasi? rekomendasiKeramik = null;
 
   KeramikModel? keramikDetail = null;
 
@@ -60,7 +60,7 @@ class KeramikProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future doRekomendasiKeramik(
+  Future<List<KeramikRekomendasi>> doRekomendasiKeramik(
     String jenisRuang,
     String jenisLuas,
     String jenisKualitas,
@@ -122,7 +122,7 @@ class KeramikProvider extends ChangeNotifier {
     });
     
     keramikRekomendasi.sort((a,b){
-      return a.total!.compareTo(b.total!);
+      return b.total!.compareTo(a.total!);
     });
 
     var index = 1;
@@ -130,6 +130,11 @@ class KeramikProvider extends ChangeNotifier {
       print("$index. ${element.keramikModel!.nama} : ${element.total!}%");
       index++;
     });
+
+    rekomendasiKeramik = keramikRekomendasi.first;
+    notifyListeners();
+
+    return keramikRekomendasi;
     
   }
 }
