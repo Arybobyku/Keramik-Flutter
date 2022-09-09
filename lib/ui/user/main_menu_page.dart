@@ -4,6 +4,7 @@ import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
 import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/service/notification.dart';
+import 'package:keramik/ui/user/form/user_form_page.dart';
 import 'package:keramik/ui/user/home/user_home_page.dart';
 import 'package:keramik/ui/user/profile/user_profile_page.dart';
 import 'package:keramik/ui/user/riwayat/user_riwayat_page.dart';
@@ -45,7 +46,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
 
   static List<Widget> _pageption = <Widget>[
     UserHomePage(),
-    UserRiwayatPage(),
+    UserFormPage(),
     UserProfilePage(),
   ];
   @override
@@ -66,8 +67,8 @@ class _MainMenuPageState extends State<MainMenuPage> {
             label: 'Beranda',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'Riwayat',
+            icon: Icon(Icons.pageview_rounded),
+            label: 'Rekomendasi',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

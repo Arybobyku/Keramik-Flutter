@@ -20,11 +20,11 @@ class _UserHomePageState extends State<UserHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: ColorPalette.generalPrimaryColor,
-        child: Icon(Icons.find_in_page_sharp,color: Colors.white,),
-        onPressed: ()=>Get.toNamed(Routes.userFormPage),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: ColorPalette.generalPrimaryColor,
+      //   child: Icon(Icons.find_in_page_sharp,color: Colors.white,),
+      //   onPressed: ()=>Get.toNamed(Routes.userFormPage),
+      // ),
       body: Consumer2<KeramikProvider,AuthProvider>(
           builder: (context, valueBuku,valueAuth, child) {
         return SingleChildScrollView(
