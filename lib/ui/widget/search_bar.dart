@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keramik/helper/color_palette.dart';
 import 'package:keramik/helper/constants.dart';
-import 'package:keramik/ui/widget/input_field_rounded.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar(

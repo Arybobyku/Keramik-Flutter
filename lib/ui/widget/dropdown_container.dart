@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/helper/constants.dart';
 
 class DropdownContainer extends StatelessWidget {
   const DropdownContainer({

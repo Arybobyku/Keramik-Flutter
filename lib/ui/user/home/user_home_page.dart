@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/helper/constants.dart';
 import 'package:keramik/provider/auth.dart';
 import 'package:keramik/provider/keramik.dart';
 import 'package:keramik/routes.dart';

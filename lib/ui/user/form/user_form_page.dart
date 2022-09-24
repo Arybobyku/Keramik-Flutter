@@ -119,6 +119,15 @@ class _UserFormPageState extends State<UserFormPage> {
                       ],
                       hint: 'Jenis Motif',
                     ),
+                    InputFieldRounded(
+                      label: "Harga",
+                      hint: "Harga",
+                      keyboardType: TextInputType.number,
+                      onChange: (val) {
+                        harga = int.parse(val);
+                      },
+                      secureText: false,
+                    ),
                     ButtonRounded(
                       text: "Pilih",
                       onPressed: ()async{

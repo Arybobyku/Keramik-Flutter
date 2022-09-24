@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:keramik/helper/color_palette.dart';
-import 'package:keramik/helper/constants.dart';
 
 class InputFieldRounded extends StatelessWidget {
   final String hint;
